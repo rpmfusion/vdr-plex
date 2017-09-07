@@ -7,6 +7,7 @@ Group:          Applications/Multimedia
 License:        GPLv2
 URL:            http://projects.vdr-developer.org/projects/plg-plex
 SOURCE:         https://projects.vdr-developer.org/git/vdr-plugin-plex.git/snapshot/vdr-plugin-plex-%{version}.tar.bz2
+Patch0:         %{name}-namespace.patch
 
 BuildRequires:  vdr-devel >= 2.0.0
 BuildRequires:  openssl-devel
@@ -25,7 +26,7 @@ Control via Plex for Android/IOS/Web, play, pause, stop, seeking
 Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 
 %prep
-%setup -qn vdr-plugin-plex-%{version}
+%autosetup -p1 -n vdr-plugin-plex-%{version}
 
 %build
 make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
@@ -41,8 +42,8 @@ make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
-* Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 0.4.0-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+* Thu Sep 07 2017 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-4
+- add %%{name}-namespace.patch.patch
 
 * Mon Mar 20 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 0.4.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild

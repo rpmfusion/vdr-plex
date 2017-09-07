@@ -1,0 +1,20 @@
+--- vdr-plugin-plex-0.4.0/m3u8Parser.cpp	2016-06-26 16:04:53.000000000 +0200
++++ vdr-plugin-plex-0.4.0.new/m3u8Parser.cpp	2017-09-07 09:38:51.561464924 +0200
+@@ -49,15 +49,14 @@
+         }
+ 
+         if (re.FullMatch(line)) {
+-            string var;
+-            //string value;
++            std::string var;
+             re.PartialMatch(line, &var);
+             if ("EXT-X-TARGETDURATION" == var) {
+                 int value;
+                 reVal.PartialMatch(line, &value);
+                 TargetDuration = value;
+             } else if ("EXT-X-ALLOW-CACHE" == var) {
+-                string value;
++                std::string value;
+                 reVal.PartialMatch(line, &value);
+                 AllowCache = "YES" == value;
+             } else if ("EXT-X-MEDIA-SEQUENCE" == var) {
