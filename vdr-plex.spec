@@ -1,6 +1,6 @@
 Name:           vdr-plex
 Version:        0.4.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A Plex Client for the VDR
 
 Group:          Applications/Multimedia
@@ -42,6 +42,9 @@ make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Thu Mar 01 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 0.4.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Thu Sep 07 2017 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-4
 - add %%{name}-namespace.patch.patch
 
