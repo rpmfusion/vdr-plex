@@ -1,6 +1,6 @@
 Name:           vdr-plex
 Version:        0.4.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A Plex Client for the VDR
 
 Group:          Applications/Multimedia
@@ -42,6 +42,9 @@ make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 0.4.0-8
+- Rebuilt for Fedora 29 Mass Rebuild binutils issue
+
 * Fri Jul 27 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
