@@ -1,6 +1,6 @@
 Name:           vdr-plex
 Version:        0.4.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        A Plex Client for the VDR
 
 Group:          Applications/Multimedia
@@ -9,6 +9,7 @@ URL:            http://projects.vdr-developer.org/projects/plg-plex
 SOURCE:         https://projects.vdr-developer.org/git/vdr-plugin-plex.git/snapshot/vdr-plugin-plex-%{version}.tar.bz2
 Patch0:         %{name}-namespace.patch
 
+BuildRequires:  gcc-c++
 BuildRequires:  vdr-devel >= 2.0.0
 BuildRequires:  openssl-devel
 BuildRequires:  xcb-util-wm-devel
@@ -42,6 +43,9 @@ make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Thu Oct 11 2018 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-9
+- Add BR gcc-c++
+
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 0.4.0-8
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
 
