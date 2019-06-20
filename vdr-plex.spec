@@ -1,9 +1,7 @@
 Name:           vdr-plex
 Version:        0.4.0
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        A Plex Client for the VDR
-
-Group:          Applications/Multimedia
 License:        GPLv2
 URL:            http://projects.vdr-developer.org/projects/plg-plex
 SOURCE:         https://projects.vdr-developer.org/git/vdr-plugin-plex.git/snapshot/vdr-plugin-plex-%{version}.tar.bz2
@@ -43,6 +41,9 @@ make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC" %{?_smp_mflags} all
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Tue Jun 18 2019 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-11
+- Rebuilt for new VDR API version
+
 * Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
