@@ -1,6 +1,6 @@
 Name:           vdr-plex
 Version:        0.4.0
-Release:        20%{?dist}
+Release:        21%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPLv2
 URL:            http://projects.vdr-developer.org/projects/plg-plex
@@ -41,6 +41,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Sat Apr 24 2021 Leigh Scott <leigh123linux@gmail.com> - 0.4.0-21
+- Rebuilt for removed libstdc++ symbol (#1937698)
+
 * Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4.0-20
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
