@@ -1,6 +1,9 @@
+# version we want build against
+%global vdr_version 2.6.1
+
 Name:           vdr-plex
 Version:        0.4.0
-Release:        25%{?dist}
+Release:        26%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPLv2
 URL:            http://projects.vdr-developer.org/projects/plg-plex
@@ -8,7 +11,7 @@ Source:         https://projects.vdr-developer.org/git/vdr-plugin-plex.git/snaps
 Patch0:         %{name}-namespace.patch
 
 BuildRequires:  gcc-c++
-BuildRequires:  vdr-devel >= 2.0.0
+BuildRequires:  vdr-devel >= %{vdr_version}
 BuildRequires:  openssl-devel
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  xcb-util-image-devel
@@ -41,6 +44,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Mon Apr 11 2022 Sérgio Basto <sergio@serjux.com> - 0.4.0-26
+- Rebuilt for VDR 2.6.x
+
 * Sat Feb 05 2022 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-25
 - Rebuilt for new VDR API version
 
