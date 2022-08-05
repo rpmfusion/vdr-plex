@@ -1,13 +1,19 @@
 # version we want build against
+%global vdr_version 2.4.0
+%if 0%{?fedora} >= 36
 %global vdr_version 2.6.1
+%endif
+%if 0%{?fedora} == 35
+%global vdr_version 2.4.7
+%endif
 
 Name:           vdr-plex
 Version:        0.4.0
-Release:        28%{?dist}
+Release:        29%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPLv2
-URL:            http://projects.vdr-developer.org/projects/plg-plex
-Source:         https://projects.vdr-developer.org/git/vdr-plugin-plex.git/snapshot/vdr-plugin-plex-%{version}.tar.bz2
+URL:            https://github.com/chriszero/vdr-plugin-plex
+Source:         %url/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:         %{name}-namespace.patch
 
 BuildRequires:  gcc-c++
@@ -44,6 +50,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Fri Aug 05 2022 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-29
+- Update to new github address
+
 * Wed May 11 2022 Sérgio Basto <sergio@serjux.com> - 0.4.0-28
 - Poco package is fixed, no need set flag POCO_UNBUNDLED
 
