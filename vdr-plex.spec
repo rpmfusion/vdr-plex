@@ -35,7 +35,7 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %autosetup -p1 -n vdr-plugin-plex-%{version}
 
 %build
-%make_build CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC -DPOCO_UNBUNDLED " all
+%make_build CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC -DPOCO_UNBUNDLED" all
 
 %install
 %make_install
