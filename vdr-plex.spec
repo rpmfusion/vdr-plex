@@ -1,12 +1,12 @@
 # version we want build against
 %global vdr_version 2.6.3
 %if 0%{?fedora} >= 40
-%global vdr_version 2.6.7
+%global vdr_version 2.6.9
 %endif
 
 Name:           vdr-plex
 Version:        0.4.0
-Release:        39%{?dist}
+Release:        40%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPLv2
 URL:            https://github.com/chriszero/vdr-plugin-plex
@@ -48,6 +48,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Fri Jul 26 2024 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-40
+- Rebuilt for new VDR API version 2.6.9
+
 * Sun Apr 21 2024 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-39
 - Rebuilt for new VDR API version
 
