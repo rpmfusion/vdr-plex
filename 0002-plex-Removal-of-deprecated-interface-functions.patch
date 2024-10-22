@@ -1,0 +1,75 @@
+--- vdr-plugin-plex-0.4.0/hlsPlayerControl.cpp.orig	2024-10-01 14:36:23.130354003 +0200
++++ vdr-plugin-plex-0.4.0/hlsPlayerControl.cpp	2024-10-01 14:38:42.126362390 +0200
+@@ -11,11 +11,17 @@
+ #include "MediaContainer.h"
+ #include "PVideo.h"
+ #include "cPlexOsdItem.h"
++#include <vdr/thread.h>
+ 
+ // static
+ cControl *cHlsPlayerControl::Create(plexclient::cVideo Video) {
+     // Stop already playing stream
++#if APIVERSNUM >= 20402
++    cMutexLock mtx;
++    cHlsPlayerControl *c = dynamic_cast<cHlsPlayerControl *>(cControl::Control(mtx, true));  // Pass mtx and true/false as needed
++#else
+     cHlsPlayerControl *c = dynamic_cast<cHlsPlayerControl *>(cControl::Control(true));
++#endif
+     if (c) {
+         c->Stop();
+     }
+--- vdr-plugin-plex-0.4.0/PlexHTTPRequestHandler.cpp.orig	2024-10-01 15:11:32.597732402 +0200
++++ vdr-plugin-plex-0.4.0/PlexHTTPRequestHandler.cpp	2024-10-01 15:14:36.822316479 +0200
+@@ -7,6 +7,7 @@
+ 
+ #include "hlsPlayerControl.h"
+ #include "services.h"
++#include <vdr/thread.h>
+ 
+ namespace plexclient {
+ 
+@@ -201,7 +202,14 @@
+ 
+             } else if (request.getURI().find("/playback") != std::string::npos) {
+                 if (request.getURI().find("/playback/seekTo") != std::string::npos) {
++
++
++#if APIVERSNUM >= 20402
++                    cMutexLock mtx;
++                    cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(mtx, true));  // Pass mtx and true/false as needed
++#else
+                     cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(true));
++#endif
+                     if (query.find("offset") != query.end()) {
+                         int offset = atoi(query["offset"].c_str()) / 1000;
+                         if (control) {
+@@ -247,7 +255,13 @@
+                 } else if (request.getURI().find("/playback/stop") != std::string::npos) {
+                     cRemote::Put(kStop);
+                 } else if (request.getURI().find("/playback/stepForward") != std::string::npos) {
++#if APIVERSNUM >= 20402
++                    cMutexLock mtx;
++                    cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(mtx, true));  // Pass mtx and true/false as needed
++#else
+                     cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(true));
++#endif
++
+                     if (control) {
+                         control->JumpRelative(30);
+                     } else if (cMyPlugin::PlayingFile) {
+@@ -261,7 +275,15 @@
+                     } else
+                         cRemote::Put(kFastFwd);
+                 } else if (request.getURI().find("/playback/stepBack") != std::string::npos) {
++
++
++#if APIVERSNUM >= 20402
++                    cMutexLock mtx;
++                    cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(mtx, true));  // Pass mtx and true/false as needed
++#else
+                     cHlsPlayerControl *control = dynamic_cast<cHlsPlayerControl *>(cControl::Control(true));
++#endif
++
+                     if (control) {
+                         control->JumpRelative(-15);
+                     } else if (cMyPlugin::PlayingFile) {

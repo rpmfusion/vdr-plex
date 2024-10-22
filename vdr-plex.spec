@@ -1,17 +1,21 @@
-# version we want build against
+# version we want to build against
 %global vdr_version 2.6.3
-%if 0%{?fedora} >= 40
+# Set vdr_version based on Fedora version
+%if 0%{?fedora} >= 42
+%global vdr_version 2.7.2
+%elif 0%{?fedora} >= 40
 %global vdr_version 2.6.9
 %endif
 
 Name:           vdr-plex
 Version:        0.4.0
-Release:        40%{?dist}
+Release:        42%{?dist}
 Summary:        A Plex Client for the VDR
-License:        GPLv2
+License:        GPL-2.0-only
 URL:            https://github.com/chriszero/vdr-plugin-plex
 Source:         %url/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-namespace.patch
+Patch1:         0002-plex-Removal-of-deprecated-interface-functions.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
@@ -48,6 +52,12 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Tue Oct 22 2024 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-42
+- Rebuilt for new VDR API version 2.7.3
+
+* Tue Oct 01 2024 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-41
+- Add 0002-plex-Removal-of-deprecated-interface-functions.patch for vdr-2.7.x
+
 * Fri Jul 26 2024 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-40
 - Rebuilt for new VDR API version 2.6.9
 
