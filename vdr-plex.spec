@@ -19,6 +19,7 @@ URL:            https://github.com/chriszero/vdr-plugin-plex
 Source:         %url/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-namespace.patch
 Patch1:         0002-plex-Removal-of-deprecated-interface-functions.patch
+Patch2:         0003-plex-Removal-pcre.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
@@ -27,7 +28,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  xcb-util-image-devel
 BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  pcre-devel
+#BuildRequires:  pcre2-devel
 BuildRequires:  poco-devel >= 1.7.3-5
 BuildRequires:  libskindesignerapi-devel >= 1.1.4
 Requires:       vdr(abi)%{?_isa} = %{vdr_apiversion}
@@ -55,8 +56,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
-* Wed Jun 03 2026 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-54
+* Fri Jun 05 2026 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-54
 - Rebuilt for new VDR 2.8.2 API version 13
+- Add 0003-plex-Removal-pcre.patch
 
 * Wed Apr 15 2026 Nicolas Chauvet <kwizart@gmail.com> - 0.4.0-53
 - Rebuilt for pcre
