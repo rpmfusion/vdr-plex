@@ -12,7 +12,7 @@
 
 Name:           vdr-plex
 Version:        0.4.0
-Release:        54%{?dist}
+Release:        55%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPL-2.0-only
 URL:            https://github.com/chriszero/vdr-plugin-plex
@@ -56,6 +56,9 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
 
 %changelog
+* Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 0.4.0-55
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
+
 * Fri Jun 05 2026 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-54
 - Rebuilt for new VDR 2.8.2 API version 13
 - Add 0003-plex-Removal-pcre.patch
