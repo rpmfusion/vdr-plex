@@ -1,18 +1,11 @@
-# Set vdr_version based on Fedora version
-# Default
-%global vdr_version 2.7.7
+%global pname   plex
 
-%if 0%{?fedora} == 43
-%global vdr_version 2.7.7
-%elif 0%{?fedora} == 44
-%global vdr_version 2.8.1
-%elif 0%{?fedora} > 44
-%global vdr_version 2.8.2
-%endif
+# The plugin ABI is expressed through vdr(abi); don't export private .so provides.
+%global __provides_exclude_from ^%{vdr_libdir}/.*\\.so.*$
 
 Name:           vdr-plex
 Version:        0.4.0
-Release:        55%{?dist}
+Release:        56%{?dist}
 Summary:        A Plex Client for the VDR
 License:        GPL-2.0-only
 URL:            https://github.com/chriszero/vdr-plugin-plex
@@ -23,12 +16,11 @@ Patch2:         0003-plex-Removal-pcre.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
-BuildRequires:  vdr-devel >= %{vdr_version}
+BuildRequires:  vdr-devel
 BuildRequires:  openssl-devel
 BuildRequires:  xcb-util-wm-devel
 BuildRequires:  xcb-util-image-devel
 BuildRequires:  xcb-util-keysyms-devel
-#BuildRequires:  pcre2-devel
 BuildRequires:  poco-devel >= 1.7.3-5
 BuildRequires:  libskindesignerapi-devel >= 1.1.4
 Requires:       vdr(abi)%{?_isa} = %{vdr_apiversion}
@@ -40,7 +32,7 @@ Control via Plex for Android/IOS/Web, play, pause, stop, seeking
 Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 
 %prep
-%autosetup -p1 -n vdr-plugin-plex-%{version}
+%autosetup -p1 -n vdr-plugin-%{pname}-%{version}
 
 %build
 %make_build CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC -DPOCO_UNBUNDLED" all
@@ -53,9 +45,12 @@ Cast Vimeo, Youtube, Apple-Trailers, and many other Plexchannels to your VDR.
 %files -f %{name}.lang
 %doc README.md
 %license LICENSE
-%{vdr_plugindir}/libvdr-*.so.%{vdr_apiversion}
+%{vdr_libdir}/libvdr-%{pname}.so.%{vdr_apiversion}
 
 %changelog
+* Fri Oct 16 2026 Martin Gansser <martinkg@fedoraproject.org> - 0.4.0-56
+- Rebuilt for new VDR 2.8.3 API version 14
+
 * Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 0.4.0-55
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
 
